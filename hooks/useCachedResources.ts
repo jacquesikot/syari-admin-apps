@@ -1,7 +1,14 @@
 import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
+import { Asset } from 'expo-asset';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
+
+const assets: number[] = [];
+
+const loadAssets = () => {
+  assets.map(async (a) => await Asset.loadAsync(a));
+};
 
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
@@ -15,8 +22,13 @@ export default function useCachedResources() {
         // Load fonts
         await Font.loadAsync({
           ...Ionicons.font,
-          'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
+          'Nunito-Bold': require('../assets/fonts/NunitoSans-Bold.ttf'),
+          'Nunito-Regular': require('../assets/fonts/NunitoSans-Regular.ttf'),
+          'Nunito-SemiBold': require('../assets/fonts/NunitoSans-SemiBold.ttf'),
         });
+
+        // Load Assets
+        loadAssets();
       } catch (e) {
         // We might want to provide this error information to an error reporting service
         console.warn(e);

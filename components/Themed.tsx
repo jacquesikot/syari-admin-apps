@@ -1,46 +1,44 @@
-/**
- * Learn more about Light and Dark modes:
- * https://docs.expo.io/guides/color-schemes/
- */
+import { createTheme, createText, createBox } from '@shopify/restyle';
 
-import * as React from 'react';
-import { Text as DefaultText, View as DefaultView } from 'react-native';
+const theme = createTheme({
+  colors: {
+    primary: '#000',
+    secondary: '#fff',
+    tertiary: 'rgba(0,0,0,0.5)',
+    accent: '#F1F1F1',
+    textDark: '#1A202C',
+    textLight: '#F7FAFC',
+    error: '#F44336',
+    success: '#5CB85C',
+  },
+  spacing: {
+    s: 5,
+    m: 10,
+    l: 15,
+    xl: 20,
+    xxl: 30,
+    xxxl: 40,
+  },
+  borderRadii: {
+    none: 0,
+    s: 5,
+    m: 10,
+    l: 15,
+    xl: 20,
+  },
+  textVariants: {
+    h1: {
+      fontSize: 28,
+      fontFamily: 'Nunito-Bold',
+    },
+  },
+  breakpoints: {
+    phone: 0,
+    tablet: 768,
+  },
+});
 
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
-
-export function useThemeColor(
-  props: { light?: string; dark?: string },
-  colorName: keyof typeof Colors.light & keyof typeof Colors.dark
-) {
-  const theme = useColorScheme();
-  const colorFromProps = props[theme];
-
-  if (colorFromProps) {
-    return colorFromProps;
-  } else {
-    return Colors[theme][colorName];
-  }
-}
-
-type ThemeProps = {
-  lightColor?: string;
-  darkColor?: string;
-};
-
-export type TextProps = ThemeProps & DefaultText['props'];
-export type ViewProps = ThemeProps & DefaultView['props'];
-
-export function Text(props: TextProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
-
-  return <DefaultText style={[{ color }, style]} {...otherProps} />;
-}
-
-export function View(props: ViewProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
-
-  return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
-}
+export type Theme = typeof theme;
+export const Text = createText<Theme>();
+export const Box = createBox<Theme>();
+export default theme;
