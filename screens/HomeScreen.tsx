@@ -3,13 +3,13 @@ import { StyleSheet } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 import { Text, Box } from '../components/Themed';
-import TextInput from '../components/TextInput';
+import TextPill from '../components/TextPill';
 
 export default function HomeScreen() {
   const { colors } = useTheme();
   return (
     <Box style={[styles.container, { backgroundColor: colors.background }]}>
-      <TextInput secured />
+      <TextPill content="6 Characters" color="success" />
     </Box>
   );
 }

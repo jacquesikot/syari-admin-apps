@@ -16,8 +16,16 @@ interface TextInputProps {
   error?: string;
   touched?: boolean;
   secured?: boolean;
+  label: string;
+  success: string;
 }
-const TextInput: FC<TextInputProps> = ({ error, touched, secured }) => {
+const TextInput: FC<TextInputProps> = ({
+  error,
+  touched,
+  secured,
+  label,
+  success,
+}) => {
   const { colors } = useTheme();
   const [visible, setVisible] = useState<boolean>(false);
 
@@ -32,7 +40,7 @@ const TextInput: FC<TextInputProps> = ({ error, touched, secured }) => {
   return (
     <Box style={styles.container}>
       <Text mb="m" variant="p2" style={{ color: colors.text }}>
-        Email
+        {label}
       </Text>
       <Box style={[styles.inputContainer, { borderColor: borderColor }]}>
         <RNTextInput
@@ -50,7 +58,7 @@ const TextInput: FC<TextInputProps> = ({ error, touched, secured }) => {
         )}
       </Box>
       <Text mt="s" variant="p3" style={{ color: statusTextColor }}>
-        Correct email
+        {success}
       </Text>
     </Box>
   );
