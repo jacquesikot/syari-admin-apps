@@ -25,6 +25,7 @@ export default function useCachedResources() {
           'Nunito-Bold': require('../assets/fonts/NunitoSans-Bold.ttf'),
           'Nunito-Regular': require('../assets/fonts/NunitoSans-Regular.ttf'),
           'Nunito-SemiBold': require('../assets/fonts/NunitoSans-SemiBold.ttf'),
+          'Nunito-Light': require('../assets/fonts/NunitoSans-Light.ttf'),
         });
 
         // Load Assets

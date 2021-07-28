@@ -28,8 +28,48 @@ const theme = createTheme({
   },
   textVariants: {
     h1: {
-      fontSize: 28,
+      fontSize: 25,
       fontFamily: 'Nunito-Bold',
+    },
+    h2: {
+      fontSize: 22,
+      fontFamily: 'Nunito-Bold',
+    },
+    h3b: {
+      fontSize: 19,
+      fontFamily: 'Nunito-Bold',
+    },
+    h3: {
+      fontSize: 19,
+      fontFamily: 'Nunito-SemiBold',
+    },
+    h4b: {
+      fontSize: 17,
+      fontFamily: 'Nunito-Bold',
+    },
+    h4: {
+      fontSize: 17,
+      fontFamily: 'Nunito-SemiBold',
+    },
+    p1b: {
+      fontSize: 17,
+      fontFamily: 'Nunito-SemiBold',
+    },
+    p1: {
+      fontSize: 17,
+      fontFamily: 'Nunito-Regular',
+    },
+    p2: {
+      fontSize: 15,
+      fontFamily: 'Nunito-Regular',
+    },
+    p2l: {
+      fontSize: 15,
+      fontFamily: 'Nunito-Light',
+    },
+    p3: {
+      fontSize: 13,
+      fontFamily: 'Nunito-Regular',
     },
   },
   breakpoints: {
