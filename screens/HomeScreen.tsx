@@ -3,13 +3,13 @@ import { StyleSheet } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 import { Text, Box } from '../components/Themed';
-import TextPill from '../components/TextPill';
+import Button from '../components/Button';
 
 export default function HomeScreen() {
   const { colors } = useTheme();
   return (
     <Box style={[styles.container, { backgroundColor: colors.background }]}>
-      <TextPill content="6 Characters" color="success" />
+      <Button label="Forgot Password?" type="round" />
     </Box>
   );
 }

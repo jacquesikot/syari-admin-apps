@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
 
-function ProfileIcon({ color, ...props }: SvgProps) {
+function ProfileIcon({ color }: SvgProps): JSX.Element {
   return (
-    <Svg width={18} height={24} viewBox="0 0 18 24" fill="none" {...props}>
+    <Svg width={18} height={24} viewBox="0 0 18 24" fill="none">
       <Path
         fillRule="evenodd"
         clipRule="evenodd"

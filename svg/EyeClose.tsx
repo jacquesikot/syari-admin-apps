@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
 
-function EyeClose({ color, ...props }: SvgProps) {
+function EyeClose({ color }: SvgProps): JSX.Element {
   return (
-    <Svg width={24} height={16} viewBox="0 0 24 16" fill="none" {...props}>
+    <Svg width={24} height={16} viewBox="0 0 24 16" fill="none">
       <Path
         fillRule="evenodd"
         clipRule="evenodd"

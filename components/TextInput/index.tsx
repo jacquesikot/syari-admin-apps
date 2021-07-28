@@ -12,12 +12,32 @@ import layout from '../../constants/Layout';
 import EyeOpen from '../../svg/EyeOpen';
 import EyeClose from '../../svg/EyeClose';
 
+const styles = StyleSheet.create({
+  container: {},
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: wp(100) - layout.screenMargin * 2,
+    height: 50,
+    borderRadius: 25,
+    borderWidth: 1,
+    paddingRight: 20,
+  },
+  input: {
+    flex: 1,
+    height: '100%',
+    marginLeft: 20,
+    fontFamily: 'Nunito-SemiBold',
+    fontSize: 15,
+  },
+});
+
 interface TextInputProps {
   error?: string;
   touched?: boolean;
   secured?: boolean;
   label: string;
-  success: string;
+  success?: string;
 }
 const TextInput: FC<TextInputProps> = ({
   error,
@@ -29,11 +49,15 @@ const TextInput: FC<TextInputProps> = ({
   const { colors } = useTheme();
   const [visible, setVisible] = useState<boolean>(false);
 
-  const borderColor = !touched
-    ? colors.primary
-    : error
-    ? theme.colors.error
-    : theme.colors.success;
+  let borderColor;
+
+  if (!touched) {
+    borderColor = colors.primary;
+  } else if (error) {
+    borderColor = theme.colors.error;
+  } else {
+    borderColor = theme.colors.success;
+  }
 
   const statusTextColor = error ? theme.colors.error : theme.colors.success;
 
@@ -42,7 +66,7 @@ const TextInput: FC<TextInputProps> = ({
       <Text mb="m" variant="p2" style={{ color: colors.text }}>
         {label}
       </Text>
-      <Box style={[styles.inputContainer, { borderColor: borderColor }]}>
+      <Box style={[styles.inputContainer, { borderColor }]}>
         <RNTextInput
           style={[styles.input, { color: colors.text }]}
           secureTextEntry={secured ? !visible : false}
@@ -63,25 +87,5 @@ const TextInput: FC<TextInputProps> = ({
     </Box>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {},
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: wp(100) - layout.screenMargin * 2,
-    height: 50,
-    borderRadius: 25,
-    borderWidth: 1,
-    paddingRight: 20,
-  },
-  input: {
-    flex: 1,
-    height: '100%',
-    marginLeft: 20,
-    fontFamily: 'Nunito-SemiBold',
-    fontSize: 15,
-  },
-});
 
 export default TextInput;

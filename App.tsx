@@ -9,20 +9,19 @@ import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import theme from './components/Themed';
 
-export default function App() {
+export default function App(): JSX.Element | null {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
 
   if (!isLoadingComplete) {
     return null;
-  } else {
-    return (
-      <SafeAreaProvider>
-        <ThemeProvider {...{ theme }}>
-          <Navigation colorScheme={colorScheme} />
-          <StatusBar />
-        </ThemeProvider>
-      </SafeAreaProvider>
-    );
   }
+  return (
+    <SafeAreaProvider>
+      <ThemeProvider {...{ theme }}>
+        <Navigation colorScheme={colorScheme} />
+        <StatusBar />
+      </ThemeProvider>
+    </SafeAreaProvider>
+  );
 }

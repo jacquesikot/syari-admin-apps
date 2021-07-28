@@ -1,12 +1,9 @@
 import * as React from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
-import { useTheme } from '@react-navigation/native';
 
-function HomeIcon({ color, ...props }: SvgProps) {
-  const { colors } = useTheme();
-
+function HomeIcon({ color }: SvgProps): JSX.Element {
   return (
-    <Svg width={24} height={21} viewBox="0 0 24 21" fill="none" {...props}>
+    <Svg width={24} height={21} viewBox="0 0 24 21" fill="none">
       <Path
         fillRule="evenodd"
         clipRule="evenodd"

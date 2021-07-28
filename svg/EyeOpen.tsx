@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
 
-function EyeOpen({ color, ...props }: SvgProps) {
+function EyeOpen({ color }: SvgProps): JSX.Element {
   return (
-    <Svg width={24} height={14} viewBox="0 0 24 14" fill="none" {...props}>
+    <Svg width={24} height={14} viewBox="0 0 24 14" fill="none">
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
