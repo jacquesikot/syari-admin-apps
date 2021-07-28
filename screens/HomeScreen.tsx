@@ -2,17 +2,8 @@ import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
-import { Text, Box } from '../components/Themed';
-import Button from '../components/Button';
-
-export default function HomeScreen() {
-  const { colors } = useTheme();
-  return (
-    <Box style={[styles.container, { backgroundColor: colors.background }]}>
-      <Button label="Forgot Password?" type="round" />
-    </Box>
-  );
-}
+import theme, { Text, Box } from '../components/Themed';
+import SmallCard from '../components/SmallCard';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,3 +12,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default function HomeScreen(): JSX.Element {
+  const { colors } = useTheme();
+  return (
+    <Box style={[styles.container, { backgroundColor: colors.background }]}>
+      <SmallCard type="jobs" title="Active Jobs" subTitle="18 tasks" />
+    </Box>
+  );
+}

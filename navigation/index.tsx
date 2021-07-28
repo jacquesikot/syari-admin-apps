@@ -25,7 +25,7 @@ const MyLightTheme: Theme = {
   dark: false,
   colors: {
     primary: theme.colors.primary,
-    background: theme.colors.secondary,
+    background: '#f7f7f7',
     text: theme.colors.textDark,
     card: theme.colors.secondary,
     border: theme.colors.primary,
