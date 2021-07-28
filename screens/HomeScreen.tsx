@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 import theme, { Text, Box } from '../components/Themed';
-import SmallCard from '../components/SmallCard';
+import LargeCard from '../components/LargeCard';
+import useColorScheme from '../hooks/useColorScheme';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,9 +16,18 @@ const styles = StyleSheet.create({
 
 export default function HomeScreen(): JSX.Element {
   const { colors } = useTheme();
+  const scheme = useColorScheme();
   return (
     <Box style={[styles.container, { backgroundColor: colors.background }]}>
-      <SmallCard type="jobs" title="Active Jobs" subTitle="18 tasks" />
+      <LargeCard
+        title="Get Started"
+        subTitle="3 min"
+        image={
+          scheme === 'light'
+            ? require('../assets/images/img-1-light.png')
+            : require('../assets/images/img-1-dark.png')
+        }
+      />
     </Box>
   );
 }

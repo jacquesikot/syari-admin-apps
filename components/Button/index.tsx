@@ -26,10 +26,24 @@ const styles = StyleSheet.create({
 interface Props {
   type: 'primary' | 'secondary' | 'round';
   arrow?: boolean;
-  label: string;
+  label?: string;
+  width?: number;
+  height?: number;
+  borderRadius?: number;
+  iconWidth?: number;
+  iconHeight?: number;
 }
 
-const Button: FC<Props> = ({ type, label, arrow }) => {
+const Button: FC<Props> = ({
+  type,
+  label,
+  arrow,
+  width,
+  height,
+  borderRadius,
+  iconWidth,
+  iconHeight,
+}) => {
   const { colors } = useTheme();
   const scheme = useColorScheme();
 
@@ -74,14 +88,18 @@ const Button: FC<Props> = ({ type, label, arrow }) => {
           styles.container,
           {
             backgroundColor: colors.primary,
-            width: 64,
-            height: 64,
-            borderRadius: 32,
+            width: width || 64,
+            height: height || 64,
+            borderRadius: borderRadius || 32,
           },
         ]}
       >
         <Box>
-          <ArrowRight color={primaryTextColor} />
+          <ArrowRight
+            color={primaryTextColor}
+            width={iconWidth}
+            height={iconHeight}
+          />
         </Box>
       </TouchableOpacity>
     );

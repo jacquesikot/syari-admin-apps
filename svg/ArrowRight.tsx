@@ -1,9 +1,14 @@
 import * as React from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
 
-function SvgComponent({ color }: SvgProps): JSX.Element {
+function SvgComponent({ color, width, height }: SvgProps): JSX.Element {
   return (
-    <Svg width={25} height={16} viewBox="0 0 25 16" fill="none">
+    <Svg
+      width={width || 25}
+      height={height || 16}
+      viewBox="0 0 25 16"
+      fill="none"
+    >
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
