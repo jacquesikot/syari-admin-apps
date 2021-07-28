@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 import theme, { Text, Box } from '../components/Themed';
-import LargeCard from '../components/LargeCard';
 import useColorScheme from '../hooks/useColorScheme';
 import ListItem from '../components/ListItem';
 import ProfileIcon from '../svg/ProfileIcon';
@@ -20,7 +19,9 @@ export default function HomeScreen(): JSX.Element {
   const { colors } = useTheme();
   const scheme = useColorScheme();
   return (
-    <Box style={[styles.container, { backgroundColor: colors.background }]}>
+    <Box
+      style={[styles.container, { backgroundColor: theme.colors.secondary }]}
+    >
       <ListItem
         icon={
           <ProfileIcon
@@ -29,8 +30,9 @@ export default function HomeScreen(): JSX.Element {
             }
           />
         }
-        title="35 Minutes"
-        subTitle="Your longest meditation session so far since you have started"
+        title="Gbenga Daniels"
+        subTitle="jimmy@gmail.com"
+        iconWidth={48}
       />
     </Box>
   );
