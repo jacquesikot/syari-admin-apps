@@ -7,6 +7,7 @@ const theme = createTheme({
     tertiary: 'rgba(0,0,0,0.5)',
     darkBg: 'rgba(255, 255, 255, 0.05)',
     accent: '#F1F1F1',
+    light: '#dfdfdf',
     textDark: '#1A202C',
     textLight: '#F7FAFC',
     error: '#F44336',

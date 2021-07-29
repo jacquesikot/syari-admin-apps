@@ -4,8 +4,7 @@ import { useTheme } from '@react-navigation/native';
 
 import theme, { Text, Box } from '../components/Themed';
 import useColorScheme from '../hooks/useColorScheme';
-import ListItem from '../components/ListItem';
-import ProfileIcon from '../svg/ProfileIcon';
+import Selector from '../components/Selector';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,21 +18,8 @@ export default function HomeScreen(): JSX.Element {
   const { colors } = useTheme();
   const scheme = useColorScheme();
   return (
-    <Box
-      style={[styles.container, { backgroundColor: theme.colors.secondary }]}
-    >
-      <ListItem
-        icon={
-          <ProfileIcon
-            color={
-              scheme === 'light' ? theme.colors.secondary : theme.colors.primary
-            }
-          />
-        }
-        title="Gbenga Daniels"
-        subTitle="jimmy@gmail.com"
-        iconWidth={48}
-      />
+    <Box style={[styles.container, { backgroundColor: colors.background }]}>
+      <Selector label="Pending" width={255} active />
     </Box>
   );
 }
