@@ -32,6 +32,7 @@ interface Props {
   borderRadius?: number;
   iconWidth?: number;
   iconHeight?: number;
+  onPress: () => void;
 }
 
 const Button: FC<Props> = ({
@@ -43,6 +44,7 @@ const Button: FC<Props> = ({
   borderRadius,
   iconWidth,
   iconHeight,
+  onPress,
 }) => {
   const { colors } = useTheme();
   const scheme = useColorScheme();
@@ -59,6 +61,7 @@ const Button: FC<Props> = ({
   if (type === 'secondary') {
     return (
       <TouchableOpacity
+        onPress={onPress}
         activeOpacity={0.8}
         style={[
           styles.container,
@@ -83,6 +86,7 @@ const Button: FC<Props> = ({
   if (type === 'round') {
     return (
       <TouchableOpacity
+        onPress={onPress}
         activeOpacity={0.8}
         style={[
           styles.container,
@@ -106,6 +110,7 @@ const Button: FC<Props> = ({
   }
   return (
     <TouchableOpacity
+      onPress={onPress}
       activeOpacity={0.8}
       style={[styles.container, { backgroundColor: colors.primary }]}
     >

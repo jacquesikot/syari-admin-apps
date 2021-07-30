@@ -1,6 +1,6 @@
+import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
@@ -16,46 +16,6 @@ import {
 import HomeIcon from '../svg/HomeIcon';
 import PlusIcon from '../svg/PlusIcon';
 import ProfileIcon from '../svg/ProfileIcon';
-
-const BottomTab = createBottomTabNavigator<BottomTabParamList>();
-
-export default function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <BottomTab.Navigator
-      initialRouteName="Home"
-      tabBarOptions={{
-        activeTintColor: Colors[colorScheme].tint,
-        showLabel: false,
-      }}
-    >
-      <BottomTab.Screen
-        name="Home"
-        component={HomeNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <HomeIcon color={color} />,
-        }}
-      />
-
-      <BottomTab.Screen
-        name="AddMeasurement"
-        component={AddMeasurementNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <PlusIcon color={color} />,
-        }}
-      />
-
-      <BottomTab.Screen
-        name="WorkStation"
-        component={WorkStationNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <ProfileIcon color={color} />,
-        }}
-      />
-    </BottomTab.Navigator>
-  );
-}
 
 const HomeStack = createStackNavigator<HomeNavParamList>();
 
@@ -90,5 +50,45 @@ function WorkStationNavigator() {
         component={WorkstationScreen}
       />
     </WorkstationStack.Navigator>
+  );
+}
+
+const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+
+export default function BottomTabNavigator(): JSX.Element {
+  const colorScheme = useColorScheme();
+
+  return (
+    <BottomTab.Navigator
+      initialRouteName="Home"
+      tabBarOptions={{
+        activeTintColor: Colors[colorScheme].tint,
+        showLabel: false,
+      }}
+    >
+      <BottomTab.Screen
+        name="Home"
+        component={HomeNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <HomeIcon color={color} />,
+        }}
+      />
+
+      <BottomTab.Screen
+        name="AddMeasurement"
+        component={AddMeasurementNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <PlusIcon color={color} />,
+        }}
+      />
+
+      <BottomTab.Screen
+        name="WorkStation"
+        component={WorkStationNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <ProfileIcon color={color} />,
+        }}
+      />
+    </BottomTab.Navigator>
   );
 }

@@ -1,16 +1,27 @@
+/* eslint-disable prettier/prettier */
 import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import { Asset } from 'expo-asset';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 
-const assets: number[] = [];
+const assets: number[] = [
+  require('../assets/images/onboarding-1-light.png'),
+  require('../assets/images/onboarding-2-light.png'),
+  require('../assets/images/onboarding-3-light.png'),
+  require('../assets/images/onboarding-1-dark.png'),
+  require('../assets/images/onboarding-2-dark.png'),
+  require('../assets/images/onboarding-3-dark.png'),
+
+  require('../assets/images/img-1-light.png'),
+  require('../assets/images/img-1-dark.png'),
+];
 
 const loadAssets = () => {
-  assets.map(async (a) => await Asset.loadAsync(a));
+  assets.map(async (a) => Asset.loadAsync(a));
 };
 
-export default function useCachedResources() {
+export default function useCachedResources(): boolean {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
 
   // Load any resources or data that we need prior to rendering the app

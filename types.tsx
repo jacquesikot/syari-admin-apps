@@ -1,6 +1,8 @@
 export type RootStackParamList = {
+  Onboarding: undefined;
   Root: undefined;
   NotFound: undefined;
+  Authentication: undefined;
 };
 
 export type BottomTabParamList = {
@@ -19,4 +21,9 @@ export type WorkStationNavParamList = {
 
 export type AddMeasurementNavParamList = {
   AddMeasurementScreen: undefined;
+};
+
+export type AuthNavParamList = {
+  Login: undefined;
+  ForgotPassword: undefined;
 };

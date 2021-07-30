@@ -52,6 +52,7 @@ const theme = createTheme({
     h4: {
       fontSize: 17,
       fontFamily: 'Nunito-SemiBold',
+      lineHeight: 23,
     },
     p1b: {
       fontSize: 17,

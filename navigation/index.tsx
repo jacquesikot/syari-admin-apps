@@ -8,6 +8,8 @@ import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import theme from '../components/Themed';
+import OnboardingScreen from '../screens/OnboardingScreen';
+import AuthNavigator from '../navigation/AuthNavigator';
 
 const MyDarkTheme: Theme = {
   dark: true,
@@ -38,6 +40,8 @@ const Stack = createStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+      <Stack.Screen name="Authentication" component={AuthNavigator} />
       <Stack.Screen name="Root" component={BottomTabNavigator} />
       <Stack.Screen
         name="NotFound"

@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
-import { border } from '@shopify/restyle';
 import theme, { Box, Text } from '../Themed';
 import useColorScheme from '../../hooks/useColorScheme';
 
