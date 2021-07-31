@@ -1,29 +1,73 @@
+import { useTheme } from '@react-navigation/native';
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
+import Button from '../components/Button';
+import IconContainer from '../components/IconContainer';
 
 import { Text, Box } from '../components/Themed';
-
-export default function AddMeasurementScreen() {
-  return (
-    <Box style={styles.container}>
-      <Text style={styles.title}>Add Measurment</Text>
-    </Box>
-  );
-}
+import Layout from '../constants/Layout';
+import StarIcon from '../svg/StarIcon';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    marginHorizontal: Layout.screenMargin,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  topBar: {
+    marginTop: Layout.screenMarginTop,
+    justifyContent: 'flex-start',
+    width: '100%',
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  body: {
+    alignItems: 'center',
+    marginTop: 102,
   },
 });
+
+export default function AddMeasurementScreen() {
+  const { colors } = useTheme();
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Box style={styles.topBar}>
+        <Text variant="h1" style={{ color: colors.text }}>
+          New Measurement
+        </Text>
+      </Box>
+
+      <Box style={styles.body}>
+        <IconContainer
+          width={116}
+          height={116}
+          icon={<StarIcon color={colors.background} />}
+        />
+
+        <Text variant="h1" style={{ color: colors.text, marginTop: 60 }}>
+          Create Measurement
+        </Text>
+
+        <Text
+          variant="h4"
+          style={{
+            color: colors.text,
+            marginTop: 15,
+            width: 200,
+            textAlign: 'center',
+          }}
+        >
+          To begin adding a new measurement select customer
+        </Text>
+      </Box>
+
+      <Box style={{ marginTop: 150 }}>
+        <Button
+          type="primary"
+          label="Add Customer"
+          arrow
+          onPress={() => true}
+        />
+      </Box>
+    </SafeAreaView>
+  );
+}
