@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
     height: 198,
     borderRadius: 20,
     backgroundColor: theme.colors.secondary,
-    justifyContent: 'center',
     padding: 15,
   },
   title: {
@@ -26,21 +25,35 @@ const styles = StyleSheet.create({
     fontSize: wp(4),
   },
   image: {
-    width: 181.24,
-    height: 135.53,
+    width: 161.24,
+    height: 125.53,
     position: 'absolute',
-    left: wp(40),
-    top: wp(13),
   },
 });
 
 interface Props {
   title: string;
-  subTitle?: string;
+  subtitle?: string;
   image: number;
+  onPress: () => void;
+  height?: number;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageLeft?: number;
+  imageTop?: number;
 }
 
-const LargeCard: FC<Props> = ({ title, subTitle, image }) => {
+const LargeCard: FC<Props> = ({
+  title,
+  subtitle,
+  image,
+  onPress,
+  height,
+  imageWidth = 161.24,
+  imageHeight = 125.53,
+  imageLeft = wp(40),
+  imageTop = wp(5),
+}) => {
   const { colors } = useTheme();
   const scheme = useColorScheme();
 
@@ -48,13 +61,13 @@ const LargeCard: FC<Props> = ({ title, subTitle, image }) => {
     scheme === 'light' ? theme.colors.secondary : theme.colors.darkBg;
 
   return (
-    <Box style={[styles.container, { backgroundColor }]}>
-      <Text mb="s" style={[styles.title, { color: colors.text }]}>
+    <Box style={[styles.container, { backgroundColor, height }]}>
+      <Text mb="s" mt="l" style={[styles.title, { color: colors.text }]}>
         {title}
       </Text>
-      {subTitle && (
+      {subtitle && (
         <Text mb="xl" style={[styles.subTitle, { color: colors.text }]}>
-          {subTitle}
+          {subtitle}
         </Text>
       )}
       <Button
@@ -64,8 +77,20 @@ const LargeCard: FC<Props> = ({ title, subTitle, image }) => {
         borderRadius={16}
         iconWidth={14}
         iconHeight={10}
+        onPress={onPress}
       />
-      <Image style={styles.image} source={image} />
+      <Image
+        style={[
+          styles.image,
+          {
+            width: imageWidth,
+            height: imageHeight,
+            left: imageLeft,
+            top: imageTop,
+          },
+        ]}
+        source={image}
+      />
     </Box>
   );
 };

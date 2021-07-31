@@ -12,8 +12,8 @@ import useColorScheme from '../../hooks/useColorScheme';
 
 const styles = StyleSheet.create({
   container: {
-    width: wp(40),
-    height: wp(40),
+    width: wp(38),
+    height: wp(38),
     justifyContent: 'center',
     borderRadius: 20,
     padding: 20,
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'Nunito-SemiBold',
-    fontSize: wp(5.5),
+    fontSize: wp(5),
   },
   subTitle: {
     fontFamily: 'Nunito-Regular',

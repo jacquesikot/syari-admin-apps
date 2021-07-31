@@ -60,10 +60,12 @@ export default function BottomTabNavigator(): JSX.Element {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Home"
       tabBarOptions={{
         activeTintColor: Colors[colorScheme].tint,
         showLabel: false,
+        style: {
+          borderTopWidth: 0,
+        },
       }}
     >
       <BottomTab.Screen
