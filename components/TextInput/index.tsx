@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { FC, useState } from 'react';
 import {
   StyleSheet,
@@ -38,6 +39,7 @@ interface TextInputProps {
   secured?: boolean;
   label: string;
   success?: string;
+  placeholder: string;
 }
 const TextInput: FC<TextInputProps> = ({
   error,
@@ -45,6 +47,8 @@ const TextInput: FC<TextInputProps> = ({
   secured,
   label,
   success,
+  placeholder,
+  ...props
 }) => {
   const { colors } = useTheme();
   const [visible, setVisible] = useState<boolean>(false);
@@ -70,6 +74,9 @@ const TextInput: FC<TextInputProps> = ({
         <RNTextInput
           style={[styles.input, { color: colors.text }]}
           secureTextEntry={secured ? !visible : false}
+          placeholder={placeholder}
+          placeholderTextColor={colors.text}
+          {...props}
         />
         {secured && (
           <TouchableOpacity onPress={() => setVisible(!visible)}>

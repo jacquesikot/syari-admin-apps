@@ -24,6 +24,7 @@ export type AddMeasurementNavParamList = {
 };
 
 export type AuthNavParamList = {
-  Login: undefined;
+  LoginEmail: undefined;
+  LoginPassword: undefined;
   ForgotPassword: undefined;
 };

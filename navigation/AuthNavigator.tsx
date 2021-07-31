@@ -2,7 +2,8 @@ import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { AuthNavParamList } from '../types';
-import Login from '../screens/Login';
+import LoginEmail from '../screens/LoginEmail';
+import LoginPassword from '../screens/LoginPassword';
 import ForgotPassword from '../screens/ForgotPassword';
 
 const AuthStack = createStackNavigator<AuthNavParamList>();
@@ -10,7 +11,8 @@ const AuthStack = createStackNavigator<AuthNavParamList>();
 function AuthNavigator(): JSX.Element {
   return (
     <AuthStack.Navigator headerMode="none">
-      <AuthStack.Screen name="Login" component={Login} />
+      <AuthStack.Screen name="LoginEmail" component={LoginEmail} />
+      <AuthStack.Screen name="LoginPassword" component={LoginPassword} />
       <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} />
     </AuthStack.Navigator>
   );

@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
     borderRadius: 27.5,
   },
   arrow: {
-    position: 'relative',
-    left: wp(27),
+    position: 'absolute',
+    left: wp(72),
   },
 });
 

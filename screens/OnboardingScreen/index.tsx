@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: wp(100) - Layout.screenMargin * 2,
-    marginTop: 45,
+    marginTop: Layout.screenMarginTop,
     marginBottom: 32,
   },
 });
