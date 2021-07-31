@@ -29,7 +29,7 @@ const MyLightTheme: Theme = {
     primary: theme.colors.primary,
     background: '#f7f7f7',
     text: theme.colors.textDark,
-    card: theme.colors.secondary,
+    card: '#f7f7f7',
     border: theme.colors.primary,
     notification: theme.colors.primary,
   },

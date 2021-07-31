@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import HomeScreen from '../screens/HomeScreen';
-import AddMeasurementScreen from '../screens/AddMeasurementScreen';
+import MeasureNavigator from './MeasureNav';
 import WorkstationScreen from '../screens/WorkstationScreen';
 import {
   BottomTabParamList,
@@ -34,7 +34,7 @@ function AddMeasurementNavigator() {
     <AddMeasurementStack.Navigator headerMode="none">
       <AddMeasurementStack.Screen
         name="AddMeasurementScreen"
-        component={AddMeasurementScreen}
+        component={MeasureNavigator}
       />
     </AddMeasurementStack.Navigator>
   );

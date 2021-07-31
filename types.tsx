@@ -28,3 +28,11 @@ export type AuthNavParamList = {
   LoginPassword: undefined;
   ForgotPassword: undefined;
 };
+
+export type MeasureNavParamList = {
+  AddMeasurementScreen: undefined;
+  SelectCustomer: undefined;
+  Shirt: undefined;
+  Trouser: undefined;
+  Instructions: undefined;
+};
