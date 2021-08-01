@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     width: wp(100) - Layout.screenMargin * 2,
     borderRadius: 20,
     padding: 15,
+    borderWidth: 1.5,
   },
   contentContainer: {
     width: '70%',
@@ -28,17 +29,27 @@ interface Props {
   subTitle: string;
   height?: number;
   iconWidth?: number;
+  selected?: boolean;
 }
 
-const ListItem: FC<Props> = ({ icon, title, subTitle, height, iconWidth }) => {
+const ListItem: FC<Props> = ({
+  icon,
+  title,
+  subTitle,
+  height,
+  iconWidth,
+  selected,
+}) => {
   const { colors } = useTheme();
   const scheme = useColorScheme();
 
   const backgroundColor =
     scheme === 'light' ? theme.colors.secondary : theme.colors.darkBg;
 
+  const borderColor = selected ? theme.colors.primary : theme.colors.secondary;
+
   return (
-    <Box style={[styles.container, { height, backgroundColor }]}>
+    <Box style={[styles.container, { height, backgroundColor, borderColor }]}>
       <IconContainer
         icon={icon}
         width={iconWidth || 58}

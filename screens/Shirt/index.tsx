@@ -9,9 +9,9 @@ const styles = StyleSheet.create({
 
 const Shirt = (): JSX.Element => {
   return (
-    <Box>
+    <SafeAreaView>
       <Text>Shirt</Text>
-    </Box>
+    </SafeAreaView>
   );
 };
 

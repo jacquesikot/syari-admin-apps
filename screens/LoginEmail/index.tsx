@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   arrow: {
-    position: 'relative',
-    right: '110%',
+    position: 'absolute',
+    right: '93%',
   },
 });
 
@@ -57,7 +57,6 @@ const LoginEmail = ({
               color: colors.text,
               width: 183,
               textAlign: 'center',
-              marginRight: wp(10),
             }}
           >
             Please enter your email address

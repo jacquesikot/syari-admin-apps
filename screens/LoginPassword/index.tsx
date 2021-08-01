@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 import {
   StyleSheet,
@@ -31,8 +32,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   arrow: {
-    position: 'relative',
-    right: '110%',
+    position: 'absolute',
+    right: '93%',
   },
   modalContainer: {
     height: hp(30),
@@ -69,7 +70,6 @@ const Login = ({
               color: colors.text,
               width: 183,
               textAlign: 'center',
-              marginRight: wp(10),
             }}
           >
             Please enter your password

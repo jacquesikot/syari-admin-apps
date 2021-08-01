@@ -1,12 +1,14 @@
 import { useTheme } from '@react-navigation/native';
+import { StackScreenProps } from '@react-navigation/stack';
 import * as React from 'react';
 import { StyleSheet, SafeAreaView } from 'react-native';
-import Button from '../components/Button';
-import IconContainer from '../components/IconContainer';
 
 import { Text, Box } from '../components/Themed';
 import Layout from '../constants/Layout';
 import StarIcon from '../svg/StarIcon';
+import { MeasureNavParamList } from '../types';
+import Button from '../components/Button';
+import IconContainer from '../components/IconContainer';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,7 +27,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function AddMeasurementScreen() {
+export default function AddMeasurementScreen({
+  navigation,
+}: StackScreenProps<MeasureNavParamList, 'AddMeasurementScreen'>): JSX.Element {
   const { colors } = useTheme();
 
   return (
@@ -65,7 +69,7 @@ export default function AddMeasurementScreen() {
           type="primary"
           label="Add Customer"
           arrow
-          onPress={() => true}
+          onPress={() => navigation.navigate('SelectCustomer')}
         />
       </Box>
     </SafeAreaView>
