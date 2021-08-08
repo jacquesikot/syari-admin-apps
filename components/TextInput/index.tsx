@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    width: wp(100) - layout.screenMargin * 2,
     height: 50,
     borderRadius: 25,
     borderWidth: 1,
@@ -31,6 +30,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-SemiBold',
     fontSize: 15,
   },
+  labelContainer: {
+    width: '100%',
+    flexDirection: 'row',
+  },
 });
 
 interface TextInputProps {
@@ -40,6 +43,8 @@ interface TextInputProps {
   label: string;
   success?: string;
   placeholder: string;
+  width?: number;
+  labelPosition?: 'center' | 'flex-end' | 'flex-start';
 }
 const TextInput: FC<TextInputProps> = ({
   error,
@@ -48,6 +53,8 @@ const TextInput: FC<TextInputProps> = ({
   label,
   success,
   placeholder,
+  width = wp(100) - layout.screenMargin * 2,
+  labelPosition = 'flex-start',
   ...props
 }) => {
   const { colors } = useTheme();
@@ -66,10 +73,18 @@ const TextInput: FC<TextInputProps> = ({
   const statusTextColor = error ? theme.colors.error : theme.colors.success;
 
   return (
-    <Box style={styles.container}>
-      <Text mb="m" variant="p2" style={{ color: colors.text }}>
-        {label}
-      </Text>
+    <Box style={[styles.container, { width }]}>
+      <Box style={[styles.labelContainer, { justifyContent: labelPosition }]}>
+        <Text
+          mb="m"
+          variant="p2"
+          style={{
+            color: colors.text,
+          }}
+        >
+          {label}
+        </Text>
+      </Box>
       <Box style={[styles.inputContainer, { borderColor }]}>
         <RNTextInput
           style={[styles.input, { color: colors.text }]}

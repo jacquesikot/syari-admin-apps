@@ -98,6 +98,7 @@ const SelectCustomer = ({
         <Box style={{ height: hp(50) }}>
           <FlatList
             data={customerData}
+            // eslint-disable-next-line prettier/prettier
             keyExtractor={(item) => item.id.toString()}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => (
@@ -111,7 +112,7 @@ const SelectCustomer = ({
                   subTitle={item.contact}
                   iconWidth={48}
                   icon={<ProfileIcon color={colors.background} />}
-                  selected={selected.id === item.id ? true : false}
+                  selected={selected.id === item.id}
                 />
               </TouchableOpacity>
             )}
