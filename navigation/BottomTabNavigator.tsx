@@ -16,6 +16,7 @@ import {
 import HomeIcon from '../svg/HomeIcon';
 import PlusIcon from '../svg/PlusIcon';
 import ProfileIcon from '../svg/ProfileIcon';
+import WorkStationNav from './WorkStationNav';
 
 const HomeStack = createStackNavigator<HomeNavParamList>();
 
@@ -47,7 +48,7 @@ function WorkStationNavigator() {
     <WorkstationStack.Navigator headerMode="none">
       <WorkstationStack.Screen
         name="WorkStationScreen"
-        component={WorkstationScreen}
+        component={WorkStationNav}
       />
     </WorkstationStack.Navigator>
   );

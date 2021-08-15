@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import layout from '../../constants/Layout';
@@ -11,7 +11,6 @@ import useColorScheme from '../../hooks/useColorScheme';
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    width: wp(100) - layout.screenMargin * 2,
     alignItems: 'center',
     justifyContent: 'center',
     height: 55,
@@ -33,6 +32,7 @@ interface Props {
   iconWidth?: number;
   iconHeight?: number;
   onPress: () => void;
+  loading?: boolean;
 }
 
 const Button: FC<Props> = ({
@@ -45,6 +45,7 @@ const Button: FC<Props> = ({
   iconWidth,
   iconHeight,
   onPress,
+  loading,
 }) => {
   const { colors } = useTheme();
   const scheme = useColorScheme();
@@ -69,16 +70,23 @@ const Button: FC<Props> = ({
             backgroundColor: secondaryBgColor,
             borderWidth: 1,
             borderColor: colors.primary,
+            width: width || wp(100) - layout.screenMargin * 2,
           },
         ]}
       >
-        <Text variant="h4" style={{ color: secondaryTextColor }}>
-          {label}
-        </Text>
-        {arrow && (
-          <Box style={styles.arrow}>
-            <ArrowRight color={secondaryTextColor} />
-          </Box>
+        {loading ? (
+          <ActivityIndicator />
+        ) : (
+          <>
+            <Text variant="h4" style={{ color: secondaryTextColor }}>
+              {label}
+            </Text>
+            {arrow && (
+              <Box style={styles.arrow}>
+                <ArrowRight color={secondaryTextColor} />
+              </Box>
+            )}
+          </>
         )}
       </TouchableOpacity>
     );
@@ -112,15 +120,27 @@ const Button: FC<Props> = ({
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.8}
-      style={[styles.container, { backgroundColor: colors.primary }]}
+      style={[
+        styles.container,
+        {
+          backgroundColor: colors.primary,
+          width: width || wp(100) - layout.screenMargin * 2,
+        },
+      ]}
     >
-      <Text variant="h4" style={{ color: primaryTextColor }}>
-        {label}
-      </Text>
-      {arrow && (
-        <Box style={styles.arrow}>
-          <ArrowRight color={primaryTextColor} />
-        </Box>
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        <>
+          <Text variant="h4" style={{ color: primaryTextColor }}>
+            {label}
+          </Text>
+          {arrow && (
+            <Box style={styles.arrow}>
+              <ArrowRight color={primaryTextColor} />
+            </Box>
+          )}
+        </>
       )}
     </TouchableOpacity>
   );

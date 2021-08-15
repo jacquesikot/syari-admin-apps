@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { Feather as Icon } from '@expo/vector-icons';
 
 import { useTheme } from '@react-navigation/native';
 import theme, { Box, Text } from '../Themed';
@@ -21,6 +22,13 @@ const styles = StyleSheet.create({
     width: '70%',
     marginLeft: 20,
   },
+  trash: {
+    width: 30,
+    height: 30,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 interface Props {
@@ -30,6 +38,8 @@ interface Props {
   height?: number;
   iconWidth?: number;
   selected?: boolean;
+  trash?: () => void;
+  complete?: boolean | 'none';
 }
 
 const ListItem: FC<Props> = ({
@@ -39,6 +49,8 @@ const ListItem: FC<Props> = ({
   height,
   iconWidth,
   selected,
+  trash,
+  complete,
 }) => {
   const { colors } = useTheme();
   const scheme = useColorScheme();
@@ -59,10 +71,33 @@ const ListItem: FC<Props> = ({
         <Text mb="s" variant="h4" style={{ color: colors.text }}>
           {title}
         </Text>
-        <Text variant="p3" numberOfLines={2} style={{ color: colors.text }}>
+        <Text
+          mb="s"
+          variant="p3"
+          numberOfLines={2}
+          style={{ color: colors.text }}
+        >
           {subTitle}
         </Text>
+        {complete !== 'none' && (
+          <Text
+            variant="p3"
+            numberOfLines={2}
+            color={complete ? 'success' : 'error'}
+          >
+            {`Status: ${complete ? 'Complete' : 'In Progress'}`}
+          </Text>
+        )}
       </Box>
+
+      {trash && (
+        <TouchableOpacity
+          onPress={trash}
+          style={[styles.trash, { backgroundColor: colors.background }]}
+        >
+          <Icon name="trash-2" color={theme.colors.error} size={24} />
+        </TouchableOpacity>
+      )}
     </Box>
   );
 };

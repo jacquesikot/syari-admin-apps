@@ -12,6 +12,7 @@ const theme = createTheme({
     textLight: '#F7FAFC',
     error: '#F44336',
     success: '#5CB85C',
+    grey: '#8A8A8A',
   },
   spacing: {
     s: 5,

@@ -4,6 +4,7 @@ import {
   StyleSheet,
   TextInput as RNTextInput,
   TouchableOpacity,
+  TextInputProps,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
@@ -18,14 +19,12 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 50,
     borderRadius: 25,
     borderWidth: 1,
     paddingRight: 20,
   },
   input: {
     flex: 1,
-    height: '100%',
     marginLeft: 20,
     fontFamily: 'Nunito-SemiBold',
     fontSize: 15,
@@ -36,25 +35,25 @@ const styles = StyleSheet.create({
   },
 });
 
-interface TextInputProps {
+interface Props extends TextInputProps {
   error?: string;
   touched?: boolean;
   secured?: boolean;
   label: string;
-  success?: string;
   placeholder: string;
   width?: number;
   labelPosition?: 'center' | 'flex-end' | 'flex-start';
+  height?: number;
 }
-const TextInput: FC<TextInputProps> = ({
+const TextInput: FC<Props> = ({
   error,
   touched,
   secured,
   label,
-  success,
   placeholder,
   width = wp(100) - layout.screenMargin * 2,
   labelPosition = 'flex-start',
+  height,
   ...props
 }) => {
   const { colors } = useTheme();
@@ -85,12 +84,14 @@ const TextInput: FC<TextInputProps> = ({
           {label}
         </Text>
       </Box>
-      <Box style={[styles.inputContainer, { borderColor }]}>
+      <Box
+        style={[styles.inputContainer, { borderColor, height: height || 50 }]}
+      >
         <RNTextInput
           style={[styles.input, { color: colors.text }]}
           secureTextEntry={secured ? !visible : false}
           placeholder={placeholder}
-          placeholderTextColor={colors.text}
+          placeholderTextColor={theme.colors.grey}
           {...props}
         />
         {secured && (
@@ -104,7 +105,7 @@ const TextInput: FC<TextInputProps> = ({
         )}
       </Box>
       <Text mt="s" variant="p3" style={{ color: statusTextColor }}>
-        {success}
+        {error}
       </Text>
     </Box>
   );

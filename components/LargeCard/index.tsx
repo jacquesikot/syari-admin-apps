@@ -65,11 +65,11 @@ const LargeCard: FC<Props> = ({
       <Text mb="s" mt="l" style={[styles.title, { color: colors.text }]}>
         {title}
       </Text>
-      {subtitle && (
-        <Text mb="xl" style={[styles.subTitle, { color: colors.text }]}>
-          {subtitle}
-        </Text>
-      )}
+
+      <Text mb="xl" style={[styles.subTitle, { color: colors.text }]}>
+        {subtitle || ''}
+      </Text>
+
       <Button
         type="round"
         width={32}

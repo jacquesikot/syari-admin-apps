@@ -10,6 +10,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { Formik } from 'formik';
+import * as yup from 'yup';
 
 import { StackScreenProps } from '@react-navigation/stack';
 import { Box, Text } from '../../components/Themed';
@@ -35,10 +37,25 @@ const styles = StyleSheet.create({
   },
 });
 
+const loginEmailSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email('Please enter a valid email')
+    .required('Email is required'),
+});
+
+interface Props {
+  email: string;
+}
+
 const LoginEmail = ({
   navigation,
 }: StackScreenProps<AuthNavParamList, 'LoginEmail'>): JSX.Element => {
   const { colors } = useTheme();
+
+  const onSubmit = (values: Props) => {
+    navigation.navigate('LoginPassword', { email: values.email });
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -63,18 +80,41 @@ const LoginEmail = ({
           </Text>
         </Box>
 
-        <Box style={{ marginTop: hp(30) }}>
-          <TextInput label="Email" placeholder="Enter your email" />
-        </Box>
+        <Formik
+          initialValues={{ email: '' }}
+          validationSchema={loginEmailSchema}
+          onSubmit={onSubmit}
+        >
+          {({ errors, touched, handleChange, handleBlur, handleSubmit }) => (
+            <>
+              <Box style={{ marginTop: hp(30) }}>
+                <TextInput
+                  label="Email"
+                  placeholder="Enter your email"
+                  touched={touched.email}
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  error={errors.email}
+                  autoCompleteType="email"
+                  autoCorrect={false}
+                  autoCapitalize="none"
+                  enablesReturnKeyAutomatically
+                  keyboardType="email-address"
+                  returnKeyType="next"
+                />
+              </Box>
 
-        <Box style={{ marginTop: hp(25) }}>
-          <Button
-            type="primary"
-            label="Continue"
-            arrow
-            onPress={() => navigation.navigate('LoginPassword')}
-          />
-        </Box>
+              <Box style={{ marginTop: hp(25) }}>
+                <Button
+                  type="primary"
+                  label="Continue"
+                  arrow
+                  onPress={handleSubmit}
+                />
+              </Box>
+            </>
+          )}
+        </Formik>
       </TouchableOpacity>
     </SafeAreaView>
   );

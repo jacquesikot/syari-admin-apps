@@ -15,10 +15,12 @@ const assets: number[] = [
 
   require('../assets/images/img-1-light.png'),
   require('../assets/images/img-1-dark.png'),
+
+  require('../assets/images/no-customer.png'),
 ];
 
 const loadAssets = () => {
-  assets.map(async (a) => Asset.loadAsync(a));
+  assets.map(async a => Asset.loadAsync(a));
 };
 
 export default function useCachedResources(): boolean {

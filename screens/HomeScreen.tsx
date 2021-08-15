@@ -1,18 +1,16 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 import { useTheme } from '@react-navigation/native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import Toast from 'react-native-toast-message';
+import * as SecureStore from 'expo-secure-store';
 
-import theme, { Text, Box } from '../components/Themed';
+import { Text, Box } from '../components/Themed';
 import useColorScheme from '../hooks/useColorScheme';
-import AlarmIcon from '../svg/AlarmIcon';
 import Layout from '../constants/Layout';
-import { ScrollView } from 'react-native-gesture-handler';
 import SmallCard from '../components/SmallCard';
 import LargeCard from '../components/LargeCard';
+import LogoutIcon from '../svg/LogoutIcon';
+import authApi from '../firebase/auth';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,6 +33,28 @@ const styles = StyleSheet.create({
   },
 });
 
+const handleLogout = async () => {
+  try {
+    await authApi.logOutUser();
+
+    Toast.show({
+      type: 'success',
+      visibilityTime: 2000,
+      autoHide: true,
+      text1: 'Logout Success',
+      text2: 'You have been successfully logged out',
+    });
+  } catch (error) {
+    Toast.show({
+      type: 'error',
+      visibilityTime: 2000,
+      autoHide: true,
+      text1: 'Login Error',
+      text2: error.message,
+    });
+  }
+};
+
 export default function HomeScreen(): JSX.Element {
   const { colors } = useTheme();
   const scheme = useColorScheme();
@@ -51,9 +71,9 @@ export default function HomeScreen(): JSX.Element {
           Dashboard
         </Text>
 
-        <Box>
-          <AlarmIcon color={colors.text} />
-        </Box>
+        <TouchableOpacity onPress={handleLogout}>
+          <LogoutIcon color={colors.text} />
+        </TouchableOpacity>
       </Box>
 
       <Box style={styles.tabContainer}>

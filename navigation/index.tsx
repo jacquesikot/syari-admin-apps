@@ -1,7 +1,9 @@
 import { NavigationContainer, Theme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
+import React, { useState } from 'react';
 import { ColorSchemeName } from 'react-native';
+import firebase from 'firebase';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
 import { RootStackParamList } from '../types';
@@ -38,16 +40,33 @@ const MyLightTheme: Theme = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  const [userSet, setUser] = useState<boolean>(false);
+
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      setUser(true);
+    } else {
+      setUser(false);
+    }
+  });
+
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Onboarding" component={OnboardingScreen} />
-      <Stack.Screen name="Authentication" component={AuthNavigator} />
-      <Stack.Screen name="Root" component={BottomTabNavigator} />
-      <Stack.Screen
-        name="NotFound"
-        component={NotFoundScreen}
-        options={{ title: 'Oops!' }}
-      />
+      {userSet ? (
+        <>
+          <Stack.Screen name="Root" component={BottomTabNavigator} />
+          <Stack.Screen
+            name="NotFound"
+            component={NotFoundScreen}
+            options={{ title: 'Oops!' }}
+          />
+        </>
+      ) : (
+        <>
+          <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+          <Stack.Screen name="Authentication" component={AuthNavigator} />
+        </>
+      )}
     </Stack.Navigator>
   );
 }
@@ -57,12 +76,16 @@ export default function Navigation({
 }: {
   colorScheme: ColorSchemeName;
 }): JSX.Element {
+  const queryClient = new QueryClient();
+
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? MyDarkTheme : MyLightTheme}
     >
-      <RootNavigator />
+      <QueryClientProvider client={queryClient}>
+        <RootNavigator />
+      </QueryClientProvider>
     </NavigationContainer>
   );
 }
