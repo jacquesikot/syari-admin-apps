@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useTheme } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import {
   StyleSheet,
   SafeAreaView,
@@ -9,8 +12,9 @@ import {
   Keyboard,
   ScrollView,
 } from 'react-native';
+import Toast from 'react-native-toast-message';
 
-import { Box, Text } from '../../components/Themed';
+import theme, { Box, Text } from '../../components/Themed';
 import ArrowLeft from '../../svg/ArrowLeft';
 import { MeasureNavParamList } from '../../types';
 import Layout from '../../constants/Layout';
@@ -49,6 +53,15 @@ const styles = StyleSheet.create({
     left: '64.5%',
     top: '-10%',
   },
+  note: {
+    width: '100%',
+    height: 45,
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: theme.colors.light,
+    marginTop: hp(2),
+  },
 });
 
 const Shirt = ({
@@ -83,7 +96,36 @@ const Shirt = ({
   const [shirtLengthBriga, setShirtlengthBriga] = useState<string>('');
 
   const handleNext = () => {
-    navigation.navigate('Trouser', {
+    if (
+      neck === '' ||
+      shoulder === '' ||
+      sleeveLength === '' ||
+      sleeveLengthLong === '' ||
+      sleeveLengthShort === '' ||
+      sleeveLengthBriga === '' ||
+      armHole === '' ||
+      roundSleeve === '' ||
+      roundSleeveLong === '' ||
+      roundSleeveShort === '' ||
+      roundSleeveBriga === '' ||
+      cuffs === '' ||
+      chest === '' ||
+      tummy === '' ||
+      hip === '' ||
+      shirtLength === '' ||
+      shirtLengthShort === '' ||
+      shirtLengthLong === '' ||
+      shirtLengthBriga === ''
+    )
+      return Toast.show({
+        type: 'error',
+        visibilityTime: 4000,
+        autoHide: true,
+        text1: 'Measurement',
+        text2: 'Please fill all fields to continue!',
+      });
+
+    return navigation.navigate('Trouser', {
       name,
       email,
       phone,
@@ -130,6 +172,12 @@ const Shirt = ({
           }}
         >
           Shirt
+        </Text>
+      </Box>
+
+      <Box style={styles.note}>
+        <Text variant="p2" color="textDark">
+          Note: For fields not needed, fill in zero(0)
         </Text>
       </Box>
 

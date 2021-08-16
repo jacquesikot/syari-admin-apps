@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import Toast from 'react-native-toast-message';
 
 import theme, { Box, Text } from '../../components/Themed';
 import Layout from '../../constants/Layout';
@@ -31,6 +32,15 @@ const styles = StyleSheet.create({
   arrow: {
     position: 'absolute',
     right: '92%',
+  },
+  note: {
+    width: '100%',
+    height: 45,
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: theme.colors.light,
+    marginTop: hp(2),
   },
 });
 
@@ -70,6 +80,10 @@ const Trouser = ({
       label: 'Rope',
       value: 'Rope',
     },
+    {
+      label: 'Standard',
+      value: 'Standard',
+    },
   ];
 
   const [waist, setWaist] = useState<string>('');
@@ -79,7 +93,22 @@ const Trouser = ({
   const [length, setLength] = useState<string>('');
 
   const handleNext = () => {
-    navigation.navigate('Instructions', {
+    if (
+      waist === '' ||
+      lap === '' ||
+      knee === '' ||
+      base === '' ||
+      length === ''
+    )
+      return Toast.show({
+        type: 'error',
+        visibilityTime: 4000,
+        autoHide: true,
+        text1: 'Measurement',
+        text2: 'Please fill all fields to continue!',
+      });
+
+    return navigation.navigate('Instructions', {
       name,
       email,
       phone,
@@ -130,6 +159,12 @@ const Trouser = ({
             }}
           >
             Trouser
+          </Text>
+        </Box>
+
+        <Box style={styles.note}>
+          <Text variant="p2" color="textDark">
+            Note: For fields not needed, fill in zero(0)
           </Text>
         </Box>
 

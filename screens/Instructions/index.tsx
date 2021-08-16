@@ -18,6 +18,7 @@ import Picker from '../../components/Picker';
 import Button from '../../components/Button';
 import TextInput from '../../components/TextInput';
 import measurementsApi from '../../firebase/measurements';
+import ActivityIndicator from '../../components/ActivityIndicator';
 
 const styles = StyleSheet.create({
   container: {
@@ -74,7 +75,7 @@ const Instructions = ({
   const data1 = [
     {
       label: 'Double cuffs',
-      value: 'Joggers',
+      value: 'Double cuffs',
     },
     {
       label: 'Traditional',
@@ -108,8 +109,18 @@ const Instructions = ({
 
   const [loading, setLoading] = useState<boolean>(false);
 
+  // eslint-disable-next-line consistent-return
   const handleFinish = async () => {
     try {
+      if (waistStyle === '' || handStyle === '' || buttons === '')
+        return Toast.show({
+          type: 'error',
+          visibilityTime: 4000,
+          autoHide: true,
+          text1: 'Measurement',
+          text2: 'Please fill all fields to continue!',
+        });
+
       setLoading(true);
 
       await measurementsApi.addMeasurement({
@@ -150,7 +161,7 @@ const Instructions = ({
 
       navigation.navigate('AddMeasurementScreen');
 
-      Toast.show({
+      return Toast.show({
         type: 'success',
         visibilityTime: 2000,
         autoHide: true,
