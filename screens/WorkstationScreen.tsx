@@ -1,7 +1,7 @@
+import React, { FC } from 'react';
 import { useTheme } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
-import React, { FC } from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView, Alert } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import theme, { Box, Text } from '../components/Themed';
@@ -69,7 +69,7 @@ const WorkStationScreen = ({
         <LargeCard
           title="Jobs"
           image={cardImage}
-          onPress={() => navigation.navigate('AllJobs')}
+          onPress={() => Alert.alert('Jobs Portal', 'Jobs coming soon!')}
           height={165}
         />
       </Box>
